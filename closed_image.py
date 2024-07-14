@@ -1,12 +1,13 @@
 """
-2024/07/14 -- 批处理，生成静脉增强图像
+2024/07/14 -- 闭运算展示
 """
 
 import cv2
 import numpy as np
 import os
+import matplotlib.pyplot as plt
 
-image_folder = "./contrast_origin"
+image_folder = "./contrast"
 image_files = [f for f in os.listdir(image_folder) if ".png" in f]
 
 for image_file in image_files:
@@ -39,4 +40,23 @@ for image_file in image_files:
     lp_normalized = 255 * lp / max_val
     lp_normalized = np.uint8(lp_normalized)
 
-    cv2.imwrite(f"after_{image_file}", lp_normalized)
+    # 闭运算
+    kernel = np.ones((33, 33), np.uint8)
+    for _ in range(3):
+        closed_image = cv2.morphologyEx(lp_normalized, cv2.MORPH_CLOSE, kernel)
+
+    plt.figure(figsize=(15, 5))
+
+    plt.subplot(1, 3, 1)
+    plt.title("Original Image")
+    plt.imshow(image, cmap="gray")
+
+    plt.subplot(1, 3, 2)
+    plt.title("Laplacian Enhanced")
+    plt.imshow(lp_normalized, cmap="gray")
+
+    plt.subplot(1, 3, 3)
+    plt.title("After Morphological Close")
+    plt.imshow(closed_image, cmap="gray")
+
+    plt.show()

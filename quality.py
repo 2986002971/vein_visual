@@ -17,7 +17,7 @@ def my_measure(image):
 
 
 if __name__ == "__main__":
-    image_folder = "./contrast_4"
+    image_folder = "./contrast_origin"
     image_files = [f for f in os.listdir(image_folder) if ".png" in f]
 
     original_entropy = []
@@ -42,7 +42,6 @@ if __name__ == "__main__":
     ax.plot(x, original_entropy, marker="o", linestyle="-", label="Original")
     ax.plot(x, after_entropy, marker="o", linestyle="-", label="After")
 
-    # 添加标签和标题
     ax.set_xlabel("Image")
     ax.set_ylabel("Entropy")
     ax.set_title("Comparison of Entropy between Original and After Images")

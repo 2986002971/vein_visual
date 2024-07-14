@@ -3,8 +3,6 @@
 """
 
 import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 
 # 读取图像
 image = cv2.imread("750-1.png", cv2.IMREAD_GRAYSCALE)

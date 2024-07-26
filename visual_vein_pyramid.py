@@ -44,7 +44,7 @@ def vein_pyramid_components(image, steps=6):
     return lp_normalized, lp_binary, num_labels, color_label
 
 
-image_folder = "./contrast_pyramid"  # 文件夹路径
+image_folder = "./contrast"
 image_files = [f for f in os.listdir(image_folder) if ".png" in f]
 
 for image_file in image_files:
